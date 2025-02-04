@@ -1,3 +1,4 @@
+//Command to run: node dev/test.js
 const Blockchain = require('./blockchain');
 
 const bitcoin = new Blockchain();
@@ -10,6 +11,7 @@ bitcoin.createNewBlock(89,'0IOEFSDFER', 'SFDSSD90945SFSDFXQSE')
 console.log(bitcoin);
 */
 
+/*
 // test for creating a new transaction
 bitcoin.createNewBlock(2389,'0IOEFSDFSF90', 'SFDSSD90945DFSDFSE');
 bitcoin.createNewTransaction(100,'SAMEZRZDSRZEFR090', 'YORBENQSDSD090');
@@ -21,5 +23,29 @@ bitcoin.createNewTransaction(300,'SAMEZRZDSRZEFR090', 'YORBENQSDSD090');
 bitcoin.createNewTransaction(2000,'SAMEZRZDSRZEFR090', 'YORBENQSDSD090');
 bitcoin.createNewBlock(94415,'SDFSDFSD15', 'SDFSDFSDF515202');
 console.log(bitcoin.chain[2]);
+*/
+
+//test for hash method
+const previousBlockHash = 'DSFZSRFZEFD50'
+const currentBlockData = [
+    {
+        amount: 10,
+        sender: 'SAMEZRZDSRZEFR090',
+        recipient: 'YORBENQSDSD090'
+    },
+    {
+        amount: 30,
+        sender: 'SAMEZRZDSRZEFR090',
+        recipient: 'YORBESDQSAZSDD090'
+    },
+    {
+        amount: 200,
+        sender: 'SAMEZRZDSRZEFR090',
+        recipient: 'YORBENQSDZQEQZEQFDSD090'
+    }
+];
+const nonce = 100;
+
+console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
 
 console.log(bitcoin);

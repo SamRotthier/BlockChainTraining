@@ -7,3 +7,4 @@ Followed tutorial: https://udemy.com/course/build-a-blockchain-in-javascript
 Wat is een blockchain?
 - Dat is een soort ledger (database) van gemaakte transacties
 Wat is mining?
+- Dat is het crearen van een block (een nieuwe transactie in de blockchain)

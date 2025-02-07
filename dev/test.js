@@ -49,6 +49,7 @@ const nonce = 100;
 console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
 */
 
+/*
 //test for proof of work
 const previousBlockHash = 'DSFZSRFZEFD50'
 const currentBlockData = [
@@ -70,5 +71,7 @@ const currentBlockData = [
 ];
 console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData)) // found 68920
 console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, 68920));
+*/
 
-//console.log(bitcoin);
+
+console.log(bitcoin);

@@ -13,3 +13,5 @@ Wat is mining?
 wat is proof of work?
 - Dit maakt de blockchain secure. (TODO uitbreiden)
  
+ wat is een genesis block?
+ - dit is de eerste block in de blockchain

@@ -25,6 +25,7 @@ bitcoin.createNewBlock(94415,'SDFSDFSD15', 'SDFSDFSDF515202');
 console.log(bitcoin.chain[2]);
 */
 
+/*
 //test for hash method
 const previousBlockHash = 'DSFZSRFZEFD50'
 const currentBlockData = [
@@ -45,7 +46,29 @@ const currentBlockData = [
     }
 ];
 const nonce = 100;
-
 console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
+*/
 
-console.log(bitcoin);
+//test for proof of work
+const previousBlockHash = 'DSFZSRFZEFD50'
+const currentBlockData = [
+    {
+        amount: 10,
+        sender: 'SAMEZRZDSRZEFR090',
+        recipient: 'YORBENQSDSD090'
+    },
+    {
+        amount: 30,
+        sender: 'SAMEZRZDSRZEFR090',
+        recipient: 'YORBESDQSAZSDD090'
+    },
+    {
+        amount: 200,
+        sender: 'SAMEZRZDSRZEFR090',
+        recipient: 'YORBENQSDZQEQZEQFDSD090'
+    }
+];
+console.log(bitcoin.proofOfWork(previousBlockHash, currentBlockData)) // found 68920
+console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, 68920));
+
+//console.log(bitcoin);

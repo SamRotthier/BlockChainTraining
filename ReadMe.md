@@ -27,3 +27,8 @@ Nodemon:
 Nodemon will automatically restart the server for us after every change (save).
 Onder package.json, scripts : "start": "nodemon --watch dev -e js dev/api.js"
 => Watch the dev folder for changes to js files and restart the api.js file
+
+
+Personal commands:
+cd ../../projects/blockchaintraining
+npm run node_5

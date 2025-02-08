@@ -1,10 +1,11 @@
 //command to start the server: node dev/api.js   (this is for without nodemon)
-//command to start with nodemon: npm start
+//command to start with nodemon: npm run node_1
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser'); //Without body parser we get undefined errors.
 const Blockchain = require('./blockchain')
 const uuid = require('uuid'); // gives unique string, we'll use this for this node's address.
+const port = process.argv[2]
 
 const nodeAddress = uuid.v1().split('-').join('');
 
@@ -54,6 +55,6 @@ app.get('/mine', function (req, res) {
 });
 
 
-app.listen(3000, function(){
-    console.log('Listening on port 3000...');
+app.listen(port, function(){
+    console.log(`Listening on port ${port}...`);
 })

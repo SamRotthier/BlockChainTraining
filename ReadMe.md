@@ -1,6 +1,11 @@
 In this project my goal is to learn more about blockchain technologie.
 
-Node.js was needed to make this project.
+Installed packages:
+- Node.JS
+- Express
+- Nodemon
+- body-parser
+
 
 Followed tutorial: https://udemy.com/course/build-a-blockchain-in-javascript
 
@@ -15,3 +20,9 @@ wat is proof of work?
  
  wat is een genesis block?
  - dit is de eerste block in de blockchain
+
+
+Nodemon:
+Nodemon will automatically restart the server for us after every change (save).
+Onder package.json, scripts : "start": "nodemon --watch dev -e js dev/api.js"
+=> Watch the dev folder for changes to js files and restart the api.js file

@@ -1,4 +1,4 @@
-//command to start the server: node dev/api.js   (this is for without nodemon)
+//command to start the server: node dev/networkNode.js   (this is for without nodemon)
 //command to start with nodemon: npm run node_1
 const express = require('express');
 const app = express();
@@ -55,6 +55,18 @@ app.get('/mine', function (req, res) {
 });
 
 
+app.post('/register-and-broadcast-node', function(req, res){
+    const newNodeUrl = Request.body.newNodeUrl;
+});
+
+app.post('/register-node', function(req, res){
+   
+});
+
+app.post('/register-node-bulk', function(req, res){
+
+});
+
 app.listen(port, function(){
     console.log(`Listening on port ${port}...`);
-})
+});

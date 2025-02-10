@@ -54,15 +54,17 @@ app.get('/mine', function (req, res) {
     });
 });
 
-
+// post http://localhost:3000/register-and-broadcast-node
 app.post('/register-and-broadcast-node', function(req, res){
     const newNodeUrl = Request.body.newNodeUrl;
 });
 
+// post http://localhost:3000/register-node
 app.post('/register-node', function(req, res){
    
 });
 
+// post http://localhost:3000/register-node-bulk
 app.post('/register-node-bulk', function(req, res){
 
 });

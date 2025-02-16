@@ -6,6 +6,7 @@ Installed packages:
 - Nodemon
 - body-parser
 - uuid
+- request-promise
 
 
 Followed tutorial: https://udemy.com/course/build-a-blockchain-in-javascript

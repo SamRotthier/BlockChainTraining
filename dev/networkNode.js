@@ -3,9 +3,10 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser'); //Without body parser we get undefined errors.
-const Blockchain = require('./blockchain')
+const Blockchain = require('./blockchain');
 const uuid = require('uuid'); // gives unique string, we'll use this for this node's address.
-const port = process.argv[2]
+const port = process.argv[2];
+const rp = require('request-promise');
 
 const nodeAddress = uuid.v1().split('-').join('');
 
@@ -57,6 +58,35 @@ app.get('/mine', function (req, res) {
 // post http://localhost:3000/register-and-broadcast-node
 app.post('/register-and-broadcast-node', function(req, res){
     const newNodeUrl = Request.body.newNodeUrl;
+    if (bitcoin.networkNodes.indexOf(newNodeUrl) == -1){
+        bitcoin.networkNodes.push(newNodeUrl);
+    } 
+
+    const regNodesPromises = []
+    bitcoin.networkNodes.forEach(networkNodeUrl =>{
+        const requestOptions = {
+            uri: networkNodeUrl + '/register-node',
+            method: 'POST',
+            body: { newNodeUrl: newNodeUrl },
+            json: true
+        };
+
+        regNodesPromises.push(rp(requestOptions));
+    })
+
+    Promise.all(regNodesPromises).then(data =>{
+        const bulkRegisterOptions = {
+            uri: newNodeUrl + '/register-nodes-bulk',
+            method: 'POST',
+            body: { allNetworkNodes: [...bitcoin.networkNodes, bitcoin.currentNodeUrl] },
+            json: true
+        }
+
+        return rp(bulkRegisterOptions);
+    })
+    .then(data =>{
+        res.json({ note: 'New node registered with network successfully.'})
+    })
 });
 
 // post http://localhost:3000/register-node

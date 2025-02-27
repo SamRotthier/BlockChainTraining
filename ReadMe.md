@@ -32,4 +32,5 @@ Onder package.json, scripts : "start": "nodemon --watch dev -e js dev/api.js"
 
 Personal commands:
 cd ../../projects/blockchaintraining
-npm run node_5
+npm run node_1
+=> See Bat file to make this easier

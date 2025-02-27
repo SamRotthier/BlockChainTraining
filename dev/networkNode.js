@@ -23,7 +23,7 @@ app.get('/blockchain', function (req, res) {
 
 // post http://localhost:3000/transaction
 /*
-Example: 
+Body example: 
 {
     "amount": 20,
     "sender": "SDFSDFSD01SDEFR859SDF",
@@ -56,8 +56,14 @@ app.get('/mine', function (req, res) {
 });
 
 // post http://localhost:3000/register-and-broadcast-node
+/*
+Body example
+{
+    "newNodeUrl": "http://localhost:3002"
+}
+*/
 app.post('/register-and-broadcast-node', function(req, res){
-    const newNodeUrl = Request.body.newNodeUrl;
+    const newNodeUrl = req.body.newNodeUrl;
     if (bitcoin.networkNodes.indexOf(newNodeUrl) == -1){
         bitcoin.networkNodes.push(newNodeUrl);
     } 
@@ -76,7 +82,7 @@ app.post('/register-and-broadcast-node', function(req, res){
 
     Promise.all(regNodesPromises).then(data =>{
         const bulkRegisterOptions = {
-            uri: newNodeUrl + '/register-nodes-bulk',
+            uri: newNodeUrl + '/register-node-bulk',
             method: 'POST',
             body: { allNetworkNodes: [...bitcoin.networkNodes, bitcoin.currentNodeUrl] },
             json: true
@@ -90,6 +96,12 @@ app.post('/register-and-broadcast-node', function(req, res){
 });
 
 // post http://localhost:3000/register-node
+/*
+ Body example:
+{
+    "newNodeUrl": "http://localhost:3003"
+}
+*/
 app.post('/register-node', function(req, res){
     const newNodeUrl = req.body.newNodeUrl;
     const nodeNotAlreadyPresent = bitcoin.networkNodes.indexOf(newNodeUrl) == -1;
@@ -101,11 +113,21 @@ app.post('/register-node', function(req, res){
 });
 
 // post http://localhost:3000/register-node-bulk
+/*
+Body example:
+{
+    "allNetworkNodes": [
+        "http://localhost:3002",
+        "http://localhost:3003",
+        "http://localhost:3004"
+    ]
+}
+*/
 app.post('/register-node-bulk', function(req, res){
     const allNetworkNodes = req.body.allNetworkNodes;
     allNetworkNodes.forEach(networkNodeUrl =>{
         const nodeNotAlreadyPresent = bitcoin.networkNodes.indexOf(networkNodeUrl) == -1;
-        const notCurrentNode = bitcoin.currentNodeUrl !== newNodeUrl;
+        const notCurrentNode = bitcoin.currentNodeUrl !== networkNodeUrl;
         if (nodeNotAlreadyPresent && notCurrentNode) bitcoin.networkNodes.push(networkNodeUrl);
     });
 

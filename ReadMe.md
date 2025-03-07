@@ -23,6 +23,8 @@ wat is proof of work?
  wat is een genesis block?
  - dit is de eerste block in de blockchain
 
+Hoe zijn de blocken gesyncroniseerd?
+
 
 Nodemon:
 Nodemon will automatically restart the server for us after every change (save).

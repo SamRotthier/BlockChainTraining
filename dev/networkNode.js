@@ -36,6 +36,16 @@ app.post('/transaction', function (req, res) {
     res.json({ note: `Transaction will be added in block ${blockIndex}.` })
 });
 
+// post http://localhost:3000/transaction/broadcast
+// this is the one we use for making new transactions
+/*
+Body example: 
+{
+    "amount": 20,
+    "sender": "SDFSDFSD01SDEFR859SDF",
+    "recipient": "ERZDFSDFFZEFDFSFS"
+}
+*/
 app.post('/transaction/broadcast', function(req,res){
     const newTransaction = bitcoin.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
     bitcoin.addTransactionToPendingTransations(newTransaction);
@@ -102,6 +112,27 @@ app.get('/mine', function (req, res) {
             block: newBlock
         });
     });
+});
+
+app.post('/receive-new-block', function(req,res){
+    const newBlock = req.body.newBlock;
+    const lastBlock = bitcoin.getLastBlock();
+    const correctHash = lastBlock.hash === newBlock.previousBlockHash;
+    const correctIndex = lastBlock['index'] + 1 === newBlock['index'];
+
+    if(correctHash && correctIndex){
+        bitcoin.chain.push(newBlock);
+        bitcoin.pendingTransactions = [];
+        res.json({
+            note: 'New block received and accepted.',
+            newBlock : newBlock
+        });
+    } else {
+        res.json({
+            note: 'New block rejected.',
+            newBlock: newBlock
+        });
+    }
 });
 
 // post http://localhost:3000/register-and-broadcast-node

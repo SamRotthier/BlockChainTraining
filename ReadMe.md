@@ -35,4 +35,23 @@ Onder package.json, scripts : "start": "nodemon --watch dev -e js dev/api.js"
 Personal commands:
 cd ../../projects/blockchaintraining
 npm run node_1
-=> See Bat file to make this easier
+=> **See Bat file* to make this easier
+To start we'll also have to link the nodes togheter, do this with register-and-broadcast-node(for every node):
+Post http://localhost:3001/register-and-broadcast-node
+{
+    "newNodeUrl": "http://localhost:3002"
+}
+Post http://localhost:3001/register-and-broadcast-node
+{
+    "newNodeUrl": "http://localhost:3003"
+}
+Post http://localhost:3001/register-and-broadcast-node
+{
+    "newNodeUrl": "http://localhost:3004"
+}
+Post http://localhost:3001/register-and-broadcast-node
+{
+    "newNodeUrl": "http://localhost:3005"
+}
+
+

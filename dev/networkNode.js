@@ -69,12 +69,38 @@ app.get('/mine', function (req, res) {
     const nonce = bitcoin.proofOfWork(previousBlockHash, currentBlockData);
     const blockHash =  bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce);
 
-    bitcoin.createNewTransaction(12.5, "00", nodeAddress);
-
     const newBlock = bitcoin.createNewBlock(nonce, previousBlockHash, blockHash);
-    res.json({
-        note: "New block mined successfully",
-        block: newBlock
+
+    const requestPromises = []
+    bitcoin.networkNodes.forEach(networkNodeUrl =>{
+        const requestOptions = {
+            uri: networkNodeUrl + '/receive-new-block',
+            method: 'POST',
+            body: { newBlock: newBlock},
+            json: true
+        };
+
+        requestPromises.push(rp(requestOptions));
+    });
+
+    Promise.all(requestPromises).then(data =>{
+        const requestOptions = {
+            uri: bitcoin.currentNodeUrl + '/transaction/broadcast',
+            method: 'POST',
+            body: {
+                amount: 12.5,
+                sender: "00",
+                recipient : nodeAddress
+            },
+            json: true
+        };
+        
+        return rp(requestOptions);
+    }).then(data =>{
+        res.json({
+            note: "New block mined & broadcast successfully",
+            block: newBlock
+        });
     });
 });
 

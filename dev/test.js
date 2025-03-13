@@ -2,16 +2,19 @@
 const Blockchain = require('./blockchain');
 const bitcoin = new Blockchain();
 
-/*
+
 // Case: test for creating a new block
+/*
 bitcoin.createNewBlock(2389,'0IOEFSDFSF90', 'SFDSSD90945DFSDFSE');
 bitcoin.createNewBlock(18,'0IOEFSSDFSDF0', 'SFDSSD90945SDFZE')
 bitcoin.createNewBlock(89,'0IOEFSDFER', 'SFDSSD90945SFSDFXQSE')
 console.log(bitcoin);
 */
 
-/*
+
+
 // Case: test for creating a new transaction
+/*
 bitcoin.createNewBlock(2389,'0IOEFSDFSF90', 'SFDSSD90945DFSDFSE');
 bitcoin.createNewTransaction(100,'SAMEZRZDSRZEFR090', 'YORBENQSDSD090');
 bitcoin.createNewBlock(12123,'0551DDFSD', 'SDFSDF085151'); //Mining a new block (placing pending transactions into the new block)
@@ -24,8 +27,9 @@ bitcoin.createNewBlock(94415,'SDFSDFSD15', 'SDFSDFSDF515202');
 console.log(bitcoin.chain[2]);
 */
 
-/*
+
 //Case: test for hash method
+/*
 const previousBlockHash = 'DSFZSRFZEFD50'
 const currentBlockData = [
     {
@@ -48,8 +52,9 @@ const nonce = 100;
 console.log(bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce));
 */
 
-/*
+
 //Case: test for proof of work
+/*
 const previousBlockHash = 'DSFZSRFZEFD50'
 const currentBlockData = [
     {

@@ -256,6 +256,25 @@ app.get('/consensus', function(req, res){
     });
 });
 
+//example: http://localhost:3001/block/00008498cd98b6adef1240a2091a75be835b0eda94a82402ba6ded90d6286ab4
+app.get('/block/:blockHash', function(req, res){
+    const blockhash = req.params.blockHash;
+    const correctBlock = bitcoin.getBlock(blockhash);
+    res.json({
+        block : correctBlock
+    });
+});
+
+app.get('/transaction/:transactionId', function(req, res){
+
+});
+
+app.get('/address/:address', function(req, res){
+
+});
+
+
+
 app.listen(port, function(){
     console.log(`Listening on port ${port}...`);
 });

@@ -265,8 +265,14 @@ app.get('/block/:blockHash', function(req, res){
     });
 });
 
+//exq;ple: http://localhost:3001/transaction/4ee69ce000f111f0a3afe71f4e581ac4
 app.get('/transaction/:transactionId', function(req, res){
-
+    const transactionId = req.params.transactionId;
+    const transactionData = bitcoin.getTransaction(transactionId);
+    res.json({
+        transaction: transactionData.transaction,
+        block: transactionData.block
+    });
 });
 
 app.get('/address/:address', function(req, res){

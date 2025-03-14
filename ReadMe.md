@@ -25,6 +25,8 @@ wat is proof of work?
 
 Hoe zijn de blocken gesyncroniseerd?
 
+TODO: Rename project to Blockchain_Prototype_JS
+
 
 Nodemon:
 Nodemon will automatically restart the server for us after every change (save).
@@ -33,10 +35,10 @@ Onder package.json, scripts : "start": "nodemon --watch dev -e js dev/api.js"
 
 
 Personal commands:
-cd ../../projects/blockchaintraining
-npm run node_1
-=> **See Bat file* to make this easier
-To start we'll also have to link the nodes togheter, do this with register-and-broadcast-node(for every node):
+- cd ../../projects/blockchaintraining
+- npm run node_1
+- => **See Bat file* to make this easier
+- To start we'll also have to link the nodes togheter, do this with register-and-broadcast-node(for every node):
 Post http://localhost:3001/register-and-broadcast-node
 {
     "newNodeUrl": "http://localhost:3002"

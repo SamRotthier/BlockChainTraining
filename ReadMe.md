@@ -39,6 +39,7 @@ Personal commands:
 - npm run node_1
 - => **See Bat file* to make this easier
 - To start we'll also have to link the nodes togheter, do this with register-and-broadcast-node(for every node):
+
 Post http://localhost:3001/register-and-broadcast-node
 {
     "newNodeUrl": "http://localhost:3002"
